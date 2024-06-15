@@ -2,58 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 
-let users = [
-    {
-        firstName: "John",
-        lastName: "wick",
-        email:"johnwick@gamil.com",
-        DOB:"22-01-1990",
-    },
-    {
-        firstName: "John",
-        lastName: "smith",
-        email:"johnsmith@gamil.com",
-        DOB:"21-07-1983",
-    },
-    {
-        firstName: "Joyal",
-        lastName: "white",
-        email:"joyalwhite@gamil.com",
-        DOB:"21-03-1989",
-    },
-];
+let users = []
 
-// GET request: Retrieve all users
 router.get("/",(req,res)=>{
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+  res.send(users);
 });
 
-// GET by specific ID request: Retrieve a single user with email ID
-router.get("/:email",(req,res)=>{
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
-});
-
-
-// POST request: Create a new user
 router.post("/",(req,res)=>{
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+  users.push({"firstName":req.query.firstName});
+  res.send("The user" + (' ')+ (req.query.firstName) + " Has been added!")
 });
 
-
-// PUT request: Update the details of a user by email ID
-router.put("/:email", (req, res) => {
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
-});
-
-
-// DELETE request: Delete a user by email ID
-router.delete("/:email", (req, res) => {
-  // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+router.get('/profile', (req, res) => {
+  res.json({
+    message: 'Profile information retrieved successfully',
+    user: req.user
+  });
 });
 
 module.exports=router;
